@@ -63,7 +63,14 @@ defmodule PassGen do
   end
 
   defp generate(length, options) do
-    char_list = Enum.map(1..length, fn _ -> Enum.random(options) |> get_char() end)
+    steps = Enum.count(options)
+    char_list = Enum.map(1..length, fn i ->
+      if i <= steps do
+        Enum.at(options, i-1) |> get_char()
+      else
+        Enum.random(options) |> get_char()
+      end
+        end)
     get_result(char_list)
   end
 
@@ -73,8 +80,8 @@ defmodule PassGen do
   end
 
   defp get_char(:lows), do: <<Enum.random(?a..?z)>>
-  defp get_char(:caps), do:  <<Enum.random(?A..?Z)>>
-  # defp get_char(:nums), do:
+  defp get_char(:caps), do: <<Enum.random(?A..?Z)>>
+  defp get_char(:nums), do: Enum.random(0..9) |> Integer.to_string()
   # defp get_char(:syms), do:
 
 end
