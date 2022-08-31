@@ -83,5 +83,32 @@ defmodule PassgenTest do
     assert String.contains?(res, wants.upps)
     refute String.contains?(res, wants.syms)
   end
+  test "Returns symbols when symb flag is set", %{expected: wants} do
+    options = %{"len" => "6", "syms" => "true"}
+
+    assert {:ok, res} = PassGen.gen(options)
+
+    refute String.contains?(res, wants.nums)
+    refute String.contains?(res, wants.upps)
+    assert String.contains?(res, wants.syms)
+  end
+  test "Returns symbols and numbers letters when syms and nums flags are set", %{expected: wants} do
+    options = %{"len" => "6", "syms" => "true", "nums" => "true"}
+
+    assert {:ok, res} = PassGen.gen(options)
+
+    assert String.contains?(res, wants.nums)
+    assert String.contains?(res, wants.syms)
+    refute String.contains?(res, wants.upps)
+  end
+  test "Returns symbols, numbers and uppercase letters when syms, nums and caps flags are set", %{expected: wants} do
+    options = %{"len" => "6", "syms" => "true", "nums" => "true", "caps" => "true"}
+
+    assert {:ok, res} = PassGen.gen(options)
+
+    assert String.contains?(res, wants.nums)
+    assert String.contains?(res, wants.upps)
+    assert String.contains?(res, wants.syms)
+  end
 
 end
