@@ -65,5 +65,23 @@ defmodule PassgenTest do
     refute String.contains?(res, wants.nums)
     refute String.contains?(res, wants.syms)
   end
+  test "Returns numbers when nums flag is set", %{expected: wants} do
+    options = %{"len" => "6", "nums" => "true"}
+
+    assert {:ok, res} = PassGen.gen(options)
+
+    assert String.contains?(res, wants.nums)
+    refute String.contains?(res, wants.upps)
+    refute String.contains?(res, wants.syms)
+  end
+  test "Returns numbers and uppercase letters when nums and caps flags are set", %{expected: wants} do
+    options = %{"len" => "6", "nums" => "true", "caps" => "true"}
+
+    assert {:ok, res} = PassGen.gen(options)
+
+    assert String.contains?(res, wants.nums)
+    assert String.contains?(res, wants.upps)
+    refute String.contains?(res, wants.syms)
+  end
 
 end
