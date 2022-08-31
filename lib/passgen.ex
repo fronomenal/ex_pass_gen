@@ -73,7 +73,7 @@ defmodule PassGen do
   end
 
   defp get_char(:lows), do: <<Enum.random(?a..?z)>>
-  # defp get_char(:caps), do:
+  defp get_char(:caps), do:  <<Enum.random(?A..?Z)>>
   # defp get_char(:nums), do:
   # defp get_char(:syms), do:
 
