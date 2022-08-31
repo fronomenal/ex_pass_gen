@@ -1,6 +1,5 @@
 defmodule PassgenTest do
   use ExUnit.Case
-  doctest Passgen
 
   setup do
     options = %{"len" => "8", "nums" => "false", "caps" => "false", "syms" => "false"}
@@ -36,9 +35,9 @@ defmodule PassgenTest do
 
     {:ok, res} = PassGen.gen(options)
 
-    assert options["len"] == String.length(res)
+    assert String.to_integer(options["len"]) == String.length(res)
   end
-  test "returns only lowercase string as default", %{opt_type: opts} do
+  test "returns only lowercase string as default", %{opts_type: opts} do
     options = %{"len" => "6"}
 
     {:ok, res} = PassGen.gen(options)
