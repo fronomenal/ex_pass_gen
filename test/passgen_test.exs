@@ -4,7 +4,7 @@ defmodule PassgenTest do
   setup do
     options = %{"len" => "8", "nums" => "false", "caps" => "false", "syms" => "false"}
 
-    opts_type = %{
+    expected = %{
       lows: Enum.map(?a..?z, &<<&1>>),
       nums: Enum.map(0..9, &Integer.to_string(&1)),
       upps: Enum.map(?A..?Z, &<<&1>>),
@@ -13,7 +13,7 @@ defmodule PassgenTest do
 
     {:ok, res} = PassGen.gen(options)
 
-    %{opts_type: opts_type, res: res}
+    %{expected: expected, res: res}
 
   end
 
@@ -37,14 +37,14 @@ defmodule PassgenTest do
 
     assert String.to_integer(options["len"]) == String.length(res)
   end
-  test "returns only lowercase string as default", %{opts_type: opts} do
+  test "returns only lowercase string as default", %{expected: wants} do
     options = %{"len" => "6"}
 
     {:ok, res} = PassGen.gen(options)
 
-    assert !String.contains?(res, opts.upps)
-    refute String.contains?(res, opts.nums)
-    refute String.contains?(res, opts.syms)
+    assert !String.contains?(res, wants.upps)
+    refute String.contains?(res, wants.nums)
+    refute String.contains?(res, wants.syms)
   end
   test "Returns error when all options except len are not bools" do
     options = %{"len" => "6", "syms" => "invalid"}
@@ -55,6 +55,15 @@ defmodule PassgenTest do
     options = %{"len" => "6", "invalid" => "true"}
 
     assert {:err, _} = PassGen.gen(options)
+  end
+  test "Returns uppercase characters when caps flag is set", %{expected: wants} do
+    options = %{"len" => "6", "caps" => "true"}
+
+    assert {:ok, res} = PassGen.gen(options)
+
+    assert String.contains?(res, wants.upps)
+    refute String.contains?(res, wants.nums)
+    refute String.contains?(res, wants.syms)
   end
 
 end
