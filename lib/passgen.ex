@@ -8,6 +8,8 @@ defmodule PassGen do
 
   @valid_options [:len, :nums, :caps, :syms]
 
+  @symbols String.split("!#$%&()%+,-./:;<=>?@[]^_{|}~", "", trim: true)
+
   @doc """
   Generates password with options input
 
@@ -82,6 +84,6 @@ defmodule PassGen do
   defp get_char(:lows), do: <<Enum.random(?a..?z)>>
   defp get_char(:caps), do: <<Enum.random(?A..?Z)>>
   defp get_char(:nums), do: Enum.random(0..9) |> Integer.to_string()
-  # defp get_char(:syms), do:
+  defp get_char(:syms), do: Enum.random(@symbols)
 
 end
