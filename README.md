@@ -31,12 +31,13 @@ There are three flags available:
      - Adds numbers to the generation
   3. `--syms` or `-s`: 
      - Adds special characters
+> e.g `passgen -syms 5` will generate a random password of length five with special characters
 ### Build
 All commands should be in the project directory. Needs elixir for build tools
 
-Project can be run with the interactive command shell. In which cause the PassGen module can be interacted with directly.
+Project can be run with the interactive elixir shell. In which case the PassGen module can be interacted with directly.
 
-Follow these to build a single executable of the project: 
+Follow these steps to build a single executable of the project: 
      
     - run `mix escript.build`
     - an executable for unix systems will be placed in the project root
