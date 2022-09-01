@@ -28,9 +28,9 @@ There are three flags available:
   1. `--caps` or `-c`: 
      - Adds uppercase letters to the generation
   2. `--nums` or `-n`: 
-     - Adds uppercase numbers to the generation
+     - Adds numbers to the generation
   3. `--syms` or `-s`: 
-     - Adds uppercase special characters
+     - Adds special characters
 ### Build
 All commands should be in the project directory. Needs elixir for build tools
 
