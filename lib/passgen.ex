@@ -35,7 +35,7 @@ defmodule PassGen do
   defp validate_length(false, _), do: {:err, "Please provide a length"}
   defp validate_length(true, options) do
     length = options["len"] |> String.trim()
-    valid = Regex.match?(~r/^\d$/, length)
+    valid = Regex.match?(~r/^\d+$/, length)
     validate_length_type(valid, options)
   end
 
