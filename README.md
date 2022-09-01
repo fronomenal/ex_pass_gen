@@ -1,21 +1,45 @@
-# Passgen
+# Elixir PassGen
 
-**TODO: Add description**
+**Password Generator: A Simple CLI tool that generates passwords**
 
-## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `passgen` to your list of dependencies in `mix.exs`:
+Can generate any length password using with uppercase letters, numbers and symbols.
 
-```elixir
-def deps do
-  [
-    {:passgen, "~> 0.1.0"}
-  ]
-end
-```
+## Technologies
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/passgen>.
+### Stack
+Project is written in: 
+* elixir
+
+### tools
+Project makes use of the following Built in Tools: 
+* mix
+* ExUnit
+* escript
+
+## Launch
+
+The compiled executables can be found in the bin directory. Ensure erlang is installed and run the executable in a terminal corresponding to your OS.
+
+### Commands
+Execute the file with the length of the password as an argument
+Flags can be used to change what is included in the generated password. Only lower case letters by default
+There are three flags available:  
+  1. `--caps` or `-c`: 
+     - Adds uppercase letters to the generation
+  2. `--nums` or `-n`: 
+     - Adds uppercase numbers to the generation
+  3. `--syms` or `-s`: 
+     - Adds uppercase special characters
+### Build
+All commands should be in the project directory. Needs elixir for build tools
+
+Project can be run with the interactive command shell. In which cause the PassGen module can be interacted with directly.
+
+Follow these to build a single executable of the project: 
+     
+    - run `mix escript.build`
+    - an executable for unix systems will be placed in the project root
+    - `mix escript.install` will build for windows too and provide a path to build location
+    - cd to that location and the compiled files can be run normally with your terminal
 
